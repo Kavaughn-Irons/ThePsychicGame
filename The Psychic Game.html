@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        
+    </head>
+    
+    <h1>The Psychic Game</h1>
+    
+    <h4 id="Wins">Wins: 0</h4>
+    
+    <h4 id="Losses">Losses: 0</h4>
+
+    <h4 id="guessesLeft">Guesses left: 9</h4>
+
+    <h4 id="guessesSoFar">Your Guesses So Far: </h4>
+    
+    <script>
+        
+        var alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+         
+        var computerPick = alphabet[Math.floor(Math.random()*26)];   
+         
+        var Wins = 0;
+        
+        var Losses = 0;
+            
+        var guessesLeft = 9;
+        
+        
+        document.onkeyup = function(event){
+        
+        var humanPick = event.key.toUpperCase();
+                    
+        if(guessesLeft === 9){
+        document.getElementById("guessesSoFar").append(humanPick)
+        }else{
+        document.getElementById("guessesSoFar").append("," + humanPick)
+        }
+        
+        guessesLeft--
+            
+        document.querySelector("#guessesLeft").innerHTML = "Guesses Left: " + guessesLeft;
+        
+        if(guessesLeft === 0){
+        Losses++;
+        document.querySelector("#Losses").innerHTML = "Losses: " + Losses; 
+        guessesLeft = 9;
+        document.querySelector("#guessesLeft").innerHTML = "Guesses Left: " + guessesLeft;
+        document.querySelector("#guessesSoFar").innerHTML = "Guesses So Far: ";
+        }     
+            
+        if(humanPick === computerPick){
+        Wins++;
+        document.querySelector("#Wins").innerHTML = "Wins: " + Wins;    
+        guessesLeft = 9;
+        document.querySelector("#guessesLeft").innerHTML = "Guesses Left: " + guessesLeft;
+        document.querySelector("#guessesSoFar").innerHTML = "Guesses So Far: ";
+        computerPick = alphabet[Math.floor(Math.random()*26)] 
+        } 
+          
+        
+        }
+    
+    </script>
+
+</html>
